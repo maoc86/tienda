@@ -1,0 +1,95 @@
+{% extends 'layout.html' %}
+  
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Proveedores</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Proveedores</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+          <h3></h3>
+          <br>
+          <div class="float-right mb-2 col-md-2">
+              <button type="button" id="addProveedor" class="btn btn-info" title="Add proveedor"><span class="glyphicon glyphicon-plus">Agregar Proveedor</span></button>
+          </div>
+          <br><br>            
+          <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>Telefono</th>       
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for proveedor in proveedores %}           
+                  <tr>
+                    <td>{{proveedor.name}}</td>
+                    <td>{{proveedor.email}}</td>
+                    <td>{{proveedor.telefono}}</td>
+                    <td><a href="{{url_for('edit_proveedor', proveedorid=proveedor.id)}}" class="btn btn-primary">Edit</a></td>  
+                    <td><a href="{{url_for('delete_proveedor', proveedorid=proveedor.id)}}" class="btn btn-danger">Delete</a></td>
+                  </tr> 
+            {% endfor %}    
+            </tbody>
+        </table>    
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+  <!-- /.content Agregar Proveedor-->
+  <div class="modal fade" id="proveedorModal">
+    <div class="modal-dialog">
+        <form method="post" id="proveedorForm" action="{{ url_for('save_proveedor')}}" enctype="multipart/form-data">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title">Add New</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">                          
+                    <label for="proveedor" class="control-label">Nombre</label>                            
+                    <input type="text" name="name" id="name" autocomplete="off" class="form-control" placeholder="Nombre"/>
+                                     
+                </div>
+                <div class="form-group">                          
+                    <label for="proveedor" class="control-label">Email</label>                         
+                    <input type="text" name="email" id="email" autocomplete="off" class="form-control" placeholder="Email"/>        
+                </div>
+
+                <div class="form-group">                          
+                    <label for="proveedor" class="control-label">Telefono</label>                         
+                    <input type="text" name="telefono" id="telefono" autocomplete="off" class="form-control" placeholder="Telefono"/>    
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <input type="hidden" name="action" id="action" value="" />
+            <input type="submit" name="save" id="save" class="btn btn-primary" value="Save changes" />
+            </div>
+        </div>
+        </form>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+  
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Proveedores</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Proveedores</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+          <h3>Editar Proveedor</h3>
+          <form method="post" id="proveedorForm" action="{{ url_for('save_proveedor')}}">
+              <div class="card-body">               
+                                      
+                      <div class="form-group">                          
+                          <label for="proveedor" class="control-label">Nombre</label>                            
+                          <input type="text" name="name" id="name" autocomplete="off" class="form-control" value="{{proveedores.name}}"/>                             
+                      </div>                    
+                      <div class="form-group">                          
+                          <label for="proveedor" class="control-label">Email</label>                         
+                          <input type="text" name="email" id="email" autocomplete="off" class="form-control" value="{{proveedores.email}}"/>                                        
+                      </div>
+                      <div class="form-group">                          
+                          <label for="proveedor" class="control-label">Telefono</label>                         
+                          <input type="text" name="telefono" id="telefono" autocomplete="off" class="form-control" value="{{proveedores.telefono}}"/>        
+                      </div>                                                                 
+                       
+                      <input type="hidden" name="proveedorid" id="proveedorid" value="{{proveedores.id}}" />                                    
+                      <input type="hidden" name="action" id="action" value="updateProveedor" />
+                      <input type="submit" name="save" id="save" class="btn btn-info" value="Save" />                    
+              </div>
+          </form>
+          </div>
+      </div>
+    </div><!-- /.container-fluid -->
+  </section>
+{% endblock %}
